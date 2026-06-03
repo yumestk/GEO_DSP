@@ -8,3 +8,12 @@ logs/
 # IDE
 .idea/
 .vscode/
+
+# Tools internal
+.claude/
+.playwright-mcp/
+
+# Misc
+*.err
+nul
+wmic
