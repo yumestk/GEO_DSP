@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.privilege.mapper.RoleMapper">
+    <resultMap id="RoleResultMap" type="com.geo.dsp.module.privilege.entity.Role">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="company_id" property="companyId"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_code" property="roleCode"/>
+        <result column="role_desc" property="roleDesc"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <!-- 角色列表结果映射 -->
+    <resultMap id="RoleVOMap" type="com.geo.dsp.module.privilege.vo.RoleVO">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_code" property="roleCode"/>
+        <result column="role_desc" property="roleDesc"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 1. 新增角色 -->
+    <insert id="insertRole" parameterType="com.geo.dsp.module.privilege.entity.Role">
+        INSERT INTO roles (
+            company_id, role_name, role_code, role_desc, status,
+            create_by, create_time, update_by, update_time, is_del
+        ) VALUES (
+                     21, #{roleName}, #{roleCode}, #{roleDesc}, #{status},
+                     #{createBy}, CURRENT_TIMESTAMP, #{updateBy}, CURRENT_TIMESTAMP, false
+                 )
+    </insert>
+
+    <!-- 2. 分页查询角色列表（支持名称/编码模糊搜索） -->
+    <select id="selectRolePage" resultMap="RoleVOMap">
+        SELECT id, uuid, role_name, role_code, role_desc, status, create_time
+        FROM roles
+        WHERE is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND (role_name LIKE CONCAT('%', #{keyword}, '%')
+            OR role_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- 3. 查询角色总数 -->
+    <select id="selectRoleCount" resultType="long">
+        SELECT COUNT(*)
+        FROM roles
+        WHERE is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND (role_name LIKE CONCAT('%', #{keyword}, '%')
+            OR role_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+    </select>
+
+    <!-- 4. 修改角色信息 -->
+    <update id="updateRole" parameterType="com.geo.dsp.module.privilege.entity.Role">
+        UPDATE roles
+        SET role_name = #{roleName},
+            role_code = #{roleCode},
+            role_desc = #{roleDesc},
+            status = #{status},
+            update_by = #{updateBy},
+            update_time = CURRENT_TIMESTAMP
+        WHERE uuid = CAST(#{uuid} AS uuid)
+          AND is_del = false
+    </update>
+
+    <!-- 5. 逻辑删除角色 -->
+    <update id="deleteByUuid">
+        UPDATE roles
+        SET is_del = true,
+            update_time = CURRENT_TIMESTAMP
+        WHERE uuid = CAST(#{uuid} AS uuid)
+          AND is_del = false
+    </update>
+
+    <!-- 6. 全量角色列表（不分页，供下拉框用） -->
+    <select id="selectAllRoles" resultMap="RoleVOMap">
+        SELECT id, uuid, role_name, role_code, role_desc, status, create_time
+        FROM roles
+        WHERE is_del = false
+        ORDER BY create_time ASC
+    </select>
+
+    <!-- 7. 根据UUID查角色ID -->
+    <select id="selectIdByUuid" resultType="long">
+        SELECT id FROM roles
+        WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <!-- 8. 根据roleCode查角色ID -->
+    <select id="selectIdByRoleCode" resultType="long">
+        SELECT id FROM roles
+        WHERE role_code = #{roleCode} AND is_del = false
+    </select>
+
+</mapper>

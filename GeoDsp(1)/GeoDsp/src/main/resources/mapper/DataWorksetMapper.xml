@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.equipment.mapper.DataWorksetMapper">
+    <resultMap id="DataWorksetResultMap" type="com.geo.dsp.module.equipment.entity.DataWorkset">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="work_config" property="workConfig"/>
+        <result column="sendcoil_len" property="sendcoilLen"/>
+        <result column="sendcoil_width" property="sendcoilWidth"/>
+        <result column="sendcoil_turns" property="sendcoilTurns"/>
+        <result column="recvcoil_size" property="recvcoilSize"/>
+        <result column="recvcoil_gain" property="recvcoilGain"/>
+        <result column="note" property="note"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="DataWorksetResultMap">
+        SELECT * FROM data_workset WHERE id = #{id} AND is_del = false
+    </select>
+
+    <insert id="insert">
+        INSERT INTO data_workset (
+            uuid, work_config, sendcoil_len, sendcoil_width, sendcoil_turns,
+            recvcoil_size, recvcoil_gain, note, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{workConfig}, #{sendcoilLen}, #{sendcoilWidth}, #{sendcoilTurns},
+                     #{recvcoilSize}, #{recvcoilGain}, #{note}, #{isDel}
+                 )
+    </insert>
+
+    <update id="update">
+        UPDATE data_workset
+        <set>
+            <if test="workConfig != null">work_config = #{workConfig},</if>
+            <if test="sendcoilLen != null">sendcoil_len = #{sendcoilLen},</if>
+            <if test="sendcoilWidth != null">sendcoil_width = #{sendcoilWidth},</if>
+            <if test="sendcoilTurns != null">sendcoil_turns = #{sendcoilTurns},</if>
+            <if test="recvcoilSize != null">recvcoil_size = #{recvcoilSize},</if>
+            <if test="recvcoilGain != null">recvcoil_gain = #{recvcoilGain},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE id = #{id} AND is_del = false
+    </update>
+
+    <update id="deleteById">
+        UPDATE data_workset SET is_del = true WHERE id = #{id}
+    </update>
+
+    <select id="selectByUuid" resultMap="DataWorksetResultMap">
+        SELECT * FROM data_workset WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <update id="deleteByUuid">
+        UPDATE data_workset SET is_del = true WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+
+    <select id="selectPage" resultMap="DataWorksetResultMap">
+        SELECT * FROM data_workset
+        WHERE is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND (work_config LIKE CONCAT('%', #{keyword}, '%')
+            OR note LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        ORDER BY id DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="selectCount" resultType="long">
+        SELECT COUNT(*) FROM data_workset
+        WHERE is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND (work_config LIKE CONCAT('%', #{keyword}, '%')
+            OR note LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+    </select>
+</mapper>

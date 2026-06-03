@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.login.mapper.LoginLogMapper">
+    <resultMap id="LoginLogResultMap" type="com.geo.dsp.module.login.entity.LoginLog">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="user_id" property="userId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="operate_type" property="operateType"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="ip_address" property="ipAddress"/>
+        <result column="user_agent" property="userAgent"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO login_log (
+            uuid, user_id, company_id, operate_type, operate_time, ip_address, user_agent, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{userId}, #{companyId}, #{operateType}, #{operateTime}, #{ipAddress}, #{userAgent}, #{isDel}
+                 )
+    </insert>
+
+    <select id="listByUserId" resultMap="LoginLogResultMap">
+        SELECT * FROM login_log WHERE user_id = #{userId} AND is_del = false ORDER BY operate_time DESC
+    </select>
+
+    <select id="listByTimeRange" resultMap="LoginLogResultMap">
+        SELECT * FROM login_log
+        <where>
+            operate_time >= #{startTime} AND operate_time &lt;= #{endTime}
+            AND is_del = false
+        </where>
+        ORDER BY operate_time DESC
+    </select>
+
+    <select id="selectByUuid" resultMap="LoginLogResultMap">
+        SELECT * FROM login_log WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <select id="listByUserUuid" resultMap="LoginLogResultMap">
+        SELECT ll.* FROM login_log ll
+                             LEFT JOIN users u ON ll.user_id = u.id
+        WHERE u.uuid = CAST(#{userUuid} AS uuid) AND ll.is_del = false
+        ORDER BY ll.operate_time DESC
+    </select>
+
+    <update id="deleteByUuid">
+        UPDATE login_log SET is_del = true WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+</mapper>

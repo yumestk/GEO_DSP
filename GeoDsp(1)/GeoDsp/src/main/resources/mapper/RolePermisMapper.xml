@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.privilege.mapper.RolePermisMapper">
+    <insert id="batchInsert">
+        INSERT INTO role_permis (
+        uuid, company_id, role_id, permission_id, permission_uuid, create_by, update_by, is_del
+        ) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            CAST(#{item.uuid} AS uuid), #{item.companyId}, #{item.roleId},
+            #{item.permissionId}, CAST(#{item.permissionUuid} AS uuid), #{item.createBy}, #{item.updateBy}, #{item.isDel}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 批量插入角色权限 -->
+    <insert id="insertBatch">
+        INSERT INTO role_permis(role_id, permission_id) VALUES
+        <foreach collection="permissionIds" item="pid" separator=",">
+            (#{roleId}, #{pid})
+        </foreach>
+    </insert>
+
+    <!-- 删除角色所有权限 -->
+    <delete id="deleteByRoleId">
+        DELETE FROM role_permis WHERE role_id = #{roleId}
+    </delete>
+
+    <!-- 根据角色ID查权限码列表（前端动态控件用） -->
+    <select id="selectPermissionCodesByRoleId" resultType="string">
+        SELECT p.permission_code
+        FROM permissions p
+        INNER JOIN role_permis rp ON rp.permission_uuid = p.uuid
+        WHERE rp.role_id = #{roleId}
+          AND p.is_del = false
+    </select>
+
+</mapper>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.equipment.mapper.DeviceLimitMapper">
+    <resultMap id="DeviceLimitResultMap" type="com.geo.dsp.module.equipment.entity.DeviceLimit">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="note" property="note"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <select id="listByDeviceId" resultMap="DeviceLimitResultMap">
+        SELECT * FROM device_limit WHERE device_id = #{deviceId} AND is_del = false ORDER BY start_time DESC
+    </select>
+
+    <select id="selectById" resultMap="DeviceLimitResultMap">
+        SELECT * FROM device_limit WHERE id = #{id} AND is_del = false
+    </select>
+
+    <insert id="insert">
+        INSERT INTO device_limit (
+            uuid, device_id, start_time, end_time, create_by, create_time, update_by, update_time, note, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{deviceId}, #{startTime}, #{endTime}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{note}, #{isDel}
+                 )
+    </insert>
+
+    <update id="update">
+        UPDATE device_limit
+        <set>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE id = #{id} AND is_del = false
+    </update>
+
+    <update id="deleteById">
+        UPDATE device_limit SET is_del = true, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <select id="selectByUuid" resultMap="DeviceLimitResultMap">
+        SELECT * FROM device_limit WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <update id="deleteByUuid">
+        UPDATE device_limit SET is_del = true, update_time = NOW() WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+
+    <select id="listByDeviceUuid" resultMap="DeviceLimitResultMap">
+        SELECT dl.* FROM device_limit dl
+                             LEFT JOIN device d ON dl.device_id = d.id
+        WHERE d.uuid = CAST(#{deviceUuid} AS uuid) AND dl.is_del = false
+        ORDER BY dl.start_time DESC
+    </select>
+</mapper>

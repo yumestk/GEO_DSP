@@ -1,0 +1,10 @@
+# Built artifacts
+*.jar
+
+# Logs
+*.log
+logs/
+
+# IDE
+.idea/
+.vscode/

@@ -1,0 +1,101 @@
+/* src/style.css - Gfast 风格全局样式 */
+
+:root {
+  --g-primary: #409eff;
+  --g-border: #e4e7ed;
+  --g-bg: #f0f2f6;
+  --g-text: #606266;
+  --g-card-padding: 16px 20px;
+  --g-card-radius: 4px;
+  --g-spacing-sm: 8px;
+  --g-spacing-md: 16px;
+  --g-spacing-lg: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--g-bg);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+/* ==================== Gfast 通用组件样式 ==================== */
+
+/* 白色卡片容器 */
+.g-card {
+  background: #fff;
+  border-radius: var(--g-card-radius);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  padding: var(--g-card-padding);
+}
+
+/* 搜索栏 */
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--g-spacing-md);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.search-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date-range span {
+  color: var(--g-text);
+  font-size: 14px;
+}
+
+/* 操作按钮栏 */
+.action-bar {
+  margin-bottom: var(--g-spacing-md);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-top: 1px solid var(--g-border);
+  padding-top: var(--g-spacing-md);
+}
+
+/* 分页组件 */
+.pagination-footer {
+  margin-top: var(--g-spacing-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--g-border);
+  padding-top: var(--g-spacing-md);
+}
+
+/* 表格单元格紧凑（可选，全局生效） */
+.el-table .el-table__cell {
+  padding: 8px 0;
+}
+
+/* 工具类 */
+.nowrap {
+  white-space: nowrap;
+}
+
+.text-center {
+  text-align: center;
+}

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.data.mapper.CollectTaskMapper">
+    <resultMap id="CollectTaskResultMap" type="com.geo.dsp.module.data.entity.CollectTask">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="project_id" property="projectId"/>
+        <result column="task_name" property="taskName"/>
+        <result column="task_desc" property="taskDesc"/>
+        <result column="executor_id" property="executorId"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="method_id" property="methodId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="note" property="note"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO collect_task (
+            uuid, project_id, task_name, task_desc, executor_id, start_time, end_time,
+            method_id, device_id, status, create_by, create_time, update_by, update_time, note, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{projectId}, #{taskName}, #{taskDesc}, #{executorId}, #{startTime}, #{endTime},
+                     #{methodId}, #{deviceId}, #{status}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{note}, #{isDel}
+                 )
+    </insert>
+
+    <select id="selectByUuid" resultMap="CollectTaskResultMap">
+        SELECT * FROM collect_task WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <select id="listByProjectUuid" resultMap="CollectTaskResultMap">
+        SELECT ct.* FROM collect_task ct
+        LEFT JOIN project p ON ct.project_id = p.id
+        WHERE p.uuid = CAST(#{projectUuid} AS uuid) AND ct.is_del = false
+        ORDER BY ct.start_time ASC
+    </select>
+
+    <select id="listByOperatorUuid" resultMap="CollectTaskResultMap">
+        SELECT ct.* FROM collect_task ct
+        LEFT JOIN users u ON ct.executor_id = u.id
+        WHERE u.uuid = CAST(#{operatorUuid} AS uuid) AND ct.is_del = false
+        ORDER BY ct.start_time ASC
+    </select>
+
+    <update id="updateByUuid">
+        UPDATE collect_task
+        <set>
+            <if test="taskName != null">task_name = #{taskName},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </update>
+
+    <update id="updateStatusByUuid">
+        UPDATE collect_task SET status = #{status}, update_by = #{updateBy}, update_time = NOW()
+        WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </update>
+
+    <update id="deleteByUuid">
+        UPDATE collect_task SET is_del = true, update_by = #{updateBy}, update_time = NOW()
+        WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+
+    <select id="selectPage" resultMap="CollectTaskResultMap">
+        SELECT ct.* FROM collect_task ct
+        LEFT JOIN project p ON ct.project_id = p.id
+        WHERE ct.is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND ct.task_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="projectUuid != null and projectUuid != ''">
+            AND p.uuid = CAST(#{projectUuid} AS uuid)
+        </if>
+        <if test="status != null">
+            AND ct.status = #{status}
+        </if>
+        ORDER BY ct.start_time ASC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="selectCount" resultType="long">
+        SELECT COUNT(*) FROM collect_task ct
+        LEFT JOIN project p ON ct.project_id = p.id
+        WHERE ct.is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND ct.task_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="projectUuid != null and projectUuid != ''">
+            AND p.uuid = CAST(#{projectUuid} AS uuid)
+        </if>
+        <if test="status != null">
+            AND ct.status = #{status}
+        </if>
+    </select>
+</mapper>

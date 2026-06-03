@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.privilege.mapper.UserRoleMapper">
+    <resultMap id="UserRoleResultMap" type="com.geo.dsp.module.privilege.entity.UserRole">
+        <id column="id" property="id"/>
+        <result column="user_uuid" property="userUuid"/>
+        <result column="role_code" property="roleCode"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_desc" property="roleDesc"/>
+    </resultMap>
+
+    <!-- 新增用户角色关联 -->
+    <insert id="insertUserRole" parameterType="com.geo.dsp.module.privilege.entity.UserRole">
+        INSERT INTO user_roles (
+        user_uuid, role_code, role_name, role_desc
+        ) VALUES (
+        CAST(#{userUuid} AS uuid), #{roleCode}, #{roleName}, #{roleDesc}
+        )
+    </insert>
+
+    <!-- 根据用户 UUID 删除角色关联记录（物理删除） -->
+    <delete id="deleteByUserUuid">
+        DELETE FROM user_roles
+        WHERE user_uuid = CAST(#{userUuid} AS uuid)
+    </delete>
+
+    <!-- 根据用户UUID查角色编码 -->
+    <select id="selectRoleCodeByUserUuid" resultType="string">
+        SELECT role_code FROM user_roles
+        WHERE user_uuid = CAST(#{userUuid} AS uuid)
+        LIMIT 1
+    </select>
+
+    <select id="selectRolesByUserId" resultType="com.geo.dsp.module.privilege.dto.RoleSimpleDTO">
+        SELECT
+        r.role_name AS roleName,
+        r.role_code AS roleCode,
+        r.role_desc AS roleDesc
+        FROM user_roles ur
+        LEFT JOIN roles r ON ur.role_id = r.id
+        WHERE ur.user_id = #{userId}
+        AND ur.is_del = false
+        AND r.is_del = false
+    </select>
+
+    <insert id="insertBatch">
+        INSERT INTO user_roles(user_id, role_id) VALUES
+        <foreach collection="roleIds" item="rid" separator=",">
+            (#{userId}, #{rid})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByUserId">
+        DELETE FROM user_roles WHERE user_id = #{userId}
+    </delete>
+
+</mapper>

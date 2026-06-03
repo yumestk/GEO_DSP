@@ -1,0 +1,61 @@
+spring.application.name=GeoDsp
+
+server.port=9966
+server.servlet.context-path=/geo
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/geo_dsp
+spring.datasource.username=postgres
+spring.datasource.password=your_password
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.datasource.druid.pool-prepared-statements=true
+spring.datasource.druid.max-pool-prepared-statement-per-connection-size=20
+
+mybatis-plus.mapper-locations=classpath:mapper/**/*.xml
+mybatis-plus.type-aliases-package=com.geo.dsp.module.*.entity
+mybatis-plus.configuration.map-underscore-to-camel-case=true
+
+logging.level.com.geo.dsp=DEBUG
+logging.level.com.geo.dsp.mapper=DEBUG
+logging.file.path=./logs
+
+spring.main.banner-mode=off
+
+spring.security.user.name=admin
+spring.security.user.password=your_password
+
+smart.doc.project-name=GeoDsp
+smart.doc.package-prefix=com.geo.dsp
+smart.doc.show-return-api=false
+
+# JWT
+jwt.secret=your_jwt_secret_key_min_256bits
+jwt.expiration=86400000
+
+# Redis
+spring.data.redis.host=your_redis_host
+spring.data.redis.port=6379
+spring.data.redis.password=your_redis_password
+spring.data.redis.database=0
+spring.data.redis.timeout=5000
+
+# Aliyun SMS
+aliyun.sms.accessKeyId=your_access_key_id
+aliyun.sms.accessKeySecret=your_access_key_secret
+aliyun.sms.signName=your_sign_name
+aliyun.sms.templateCode=your_template_code
+
+# Security toggle (false = permit all, true = JWT auth)
+security.enabled=false
+
+# Jackson date format
+spring.jackson.date-format=yyyy-MM-dd
+spring.jackson.serialization.write-dates-as-timestamps=false
+
+debug = true
+
+logging.level.org.mybatis=DEBUG
+logging.level.java.sql=DEBUG
+logging.level.jdbc.sqlonly=DEBUG
+# MyBatis SQL log
+mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl

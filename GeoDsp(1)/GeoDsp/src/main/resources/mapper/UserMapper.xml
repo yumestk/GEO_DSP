@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.user.mapper.UserMapper">
+    <!-- 结果集映射：数据库字段 → 实体类属性（对齐 users 表与前端字段） -->
+    <resultMap id="UserResultMap" type="com.geo.dsp.module.user.entity.User">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="company_id" property="companyId"/>
+        <result column="user_name" property="userName"/>
+        <result column="account" property="account"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="phone_num" property="phoneNum"/>
+        <result column="user_type" property="userType"/>
+        <result column="status" property="status"/>
+        <result column="image_id" property="imageId"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_del" property="isDel"/>
+        <result column="note" property="note"/>
+        <result column="sex" property="sex"/>
+    </resultMap>
+
+    <!-- 用户列表VO映射 -->
+    <resultMap id="UserListVOMap" type="com.geo.dsp.module.user.vo.UserListVO">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="user_name" property="userName"/>
+        <result column="account" property="account"/>
+        <result column="email" property="email"/>
+        <result column="phone_num" property="phoneNum"/>
+        <result column="role_name" property="roleName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <!-- 通用字段 -->
+
+
+    <!-- 新增用户 -->
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO users (
+        company_id, user_name, account, password, email, phone_num, user_type,
+        status, create_by, create_time, update_by, update_time, is_del, sex
+        ) VALUES (
+        #{companyId}, #{userName}, #{account}, #{password}, #{email}, #{phoneNum}, #{userType},
+        #{status}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{isDel}, #{sex}
+        )
+    </insert>
+
+
+    <!-- 逻辑删除用户：根据 UUID 更新 is_del 为 true -->
+    <update id="deleteByUuid">
+        UPDATE users
+        SET is_del = true
+        WHERE uuid = CAST(#{uuid} AS uuid)
+        AND is_del = false
+    </update>
+
+    <!-- 根据UUID修改用户信息 -->
+    <update id="updateByUuid" parameterType="com.geo.dsp.module.user.entity.User">
+        UPDATE users
+        <set>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="account != null">account = #{account},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phoneNum != null">phone_num = #{phoneNum},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="sex != null">sex = #{sex},</if>
+        </set>
+        WHERE uuid = CAST(#{uuid} AS uuid)
+        AND is_del = false
+    </update>
+
+    <!-- 分页查询用户列表（关联角色表） -->
+    <select id="selectUserPage" resultMap="UserListVOMap">
+        SELECT
+        u.id,
+        u.uuid,
+        u.user_name,
+        u.account,
+        u.email,
+        u.phone_num,
+        ur.role_name,
+        u.create_time,
+        u.status
+        FROM users u
+        -- 关联用户角色表，查询用户对应的角色名称
+        LEFT JOIN user_roles ur ON u.uuid = ur.user_uuid
+        WHERE u.is_del = false -- 只查询未逻辑删除的用户
+        <!-- 用户名模糊搜索条件：如果 userName 不为空，则添加 LIKE 条件 -->
+        <if test="userName != null and userName != ''">
+            AND u.user_name LIKE concat('%', #{userName}, '%')
+        </if>
+        <if test="status != null">
+            AND u.status = #{status}
+        </if>
+        ORDER BY u.create_time DESC  -- 按创建时间倒序，最新用户在前
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- 查询用户总数 -->
+    <select id="selectUserCount" resultType="long">
+        SELECT COUNT(*)
+        FROM users u
+        WHERE u.is_del = false
+        <if test="userName != null and userName != ''">
+            AND u.user_name LIKE concat('%', #{userName}, '%')
+        </if>
+        <if test="status != null">
+            AND u.status = #{status}
+        </if>
+    </select>
+
+    <!-- 3. 修改用户 -->
+    <update id="update" parameterType="User">
+        UPDATE users
+        <set>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="phoneNum != null">phone_num = #{phoneNum},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            update_time = now()
+        </set>
+        WHERE id = #{id} AND is_del = false
+    </update>
+
+    <!--    &lt;!&ndash; 4. 根据ID查询 &ndash;&gt;-->
+    <!--    <select id="selectById" resultMap="UserResultMap">-->
+    <!--        SELECT <include refid="Base_Column"/> FROM users-->
+    <!--        WHERE id = #{id} AND is_del = false-->
+    <!--    </select>-->
+
+    <!--    &lt;!&ndash; 5. 根据UUID查询 &ndash;&gt;-->
+    <!--    <select id="selectByUuid" resultMap="UserResultMap">-->
+    <!--        SELECT <include refid="Base_Column"/> FROM users-->
+    <!--        WHERE uuid = #{uuid} AND is_del = false-->
+    <!--    </select>-->
+
+    <!-- 6. 根据账号查询 -->
+    <select id="selectByAccount" resultMap="UserResultMap">
+        SELECT id, uuid, user_name, account, password, email, phone_num,
+        user_type, status, image_id, create_by, create_time,
+        update_by, update_time, is_del, note, sex
+        FROM users
+        WHERE account = #{account} AND is_del = false
+    </select>
+
+    <!-- 根据手机号查询 -->
+    <select id="selectByPhoneNum" resultMap="UserResultMap">
+        SELECT id, uuid, user_name, account, password, email, phone_num,
+        user_type, status, image_id, create_by, create_time,
+        update_by, update_time, is_del, note, sex
+        FROM users
+        WHERE phone_num = #{phoneNum} AND is_del = false
+    </select>
+
+    <!--    &lt;!&ndash; 7. 分页查询 &ndash;&gt;-->
+    <!--    <select id="selectPage" resultMap="UserResultMap">-->
+    <!--        SELECT <include refid="Base_Column"/> FROM users-->
+    <!--        WHERE is_del = false-->
+    <!--        <if test="companyId != null">AND company_id = #{companyId}</if>-->
+    <!--        <if test="userName != null and userName != ''">AND user_name LIKE concat('%',#{userName},'%')</if>-->
+    <!--        <if test="status != null">AND status = #{status}</if>-->
+    <!--        ORDER BY create_time DESC-->
+    <!--        LIMIT #{size} OFFSET #{offset}-->
+    <!--    </select>-->
+
+    <!-- 8. 查询总数 -->
+    <select id="selectCount" resultType="long">
+        SELECT COUNT(*) FROM users
+        WHERE is_del = false
+        <if test="companyId != null">AND company_id = #{companyId}</if>
+        <if test="userName != null and userName != ''">AND user_name LIKE concat('%',#{userName},'%')</if>
+        <if test="status != null">AND status = #{status}</if>
+    </select>
+
+
+</mapper>

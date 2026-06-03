@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.login.mapper.OperateLogMapper">
+    <resultMap id="OperateLogResultMap" type="com.geo.dsp.module.login.entity.OperateLog">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="user_id" property="userId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="module_name" property="moduleName"/>
+        <result column="operate_type" property="operateType"/>
+        <result column="operate_desc" property="operateDesc"/>
+        <result column="operate_time" property="operateTime"/>
+        <result column="operate_record" property="operateRecord"/>
+        <result column="new_record" property="newRecord"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO operate_log (
+            uuid, user_id, company_id, module_name, operate_type, operate_desc,
+            operate_time, operate_record, new_record, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{userId}, #{companyId}, #{moduleName}, #{operateType}, #{operateDesc},
+                     #{operateTime}, #{operateRecord}, #{newRecord}, #{isDel}
+                 )
+    </insert>
+
+    <select id="selectByUuid" resultMap="OperateLogResultMap">
+        SELECT * FROM operate_log WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <select id="listByUserUuid" resultMap="OperateLogResultMap">
+        SELECT ol.* FROM operate_log ol
+                             LEFT JOIN users u ON ol.user_id = u.id
+        WHERE u.uuid = CAST(#{userUuid} AS uuid) AND ol.is_del = false
+        ORDER BY ol.operate_time DESC
+    </select>
+
+    <select id="listByModuleName" resultMap="OperateLogResultMap">
+        SELECT * FROM operate_log WHERE module_name = #{moduleName} AND is_del = false
+        ORDER BY operate_time DESC
+    </select>
+
+    <select id="listByCompanyUuid" resultMap="OperateLogResultMap">
+        SELECT ol.* FROM operate_log ol
+                             LEFT JOIN companies c ON ol.company_id = c.id
+        WHERE c.uuid = CAST(#{companyUuid} AS uuid) AND ol.is_del = false
+        ORDER BY ol.operate_time DESC
+    </select>
+
+    <update id="updateByUuid">
+        UPDATE operate_log
+        <set>
+            <if test="operateDesc != null">operate_desc = #{operateDesc},</if>
+            <if test="newRecord != null">new_record = #{newRecord},</if>
+        </set>
+        WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </update>
+
+    <update id="deleteByUuid">
+        UPDATE operate_log SET is_del = true, user_id = #{userId}, operate_time = NOW()
+        WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+</mapper>

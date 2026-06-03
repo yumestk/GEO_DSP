@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.equipment.mapper.DeviceTypeMapper">
+    <resultMap id="DeviceTypeResultMap" type="com.geo.dsp.module.equipment.entity.DeviceType">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="type_name" property="typeName"/>
+        <result column="type_desc" property="typeDesc"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_del" property="isDel"/>
+        <result column="note" property="note"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="DeviceTypeResultMap">
+        SELECT * FROM device_type WHERE id = #{id} AND is_del = false
+    </select>
+
+    <select id="listAll" resultMap="DeviceTypeResultMap">
+        SELECT * FROM device_type WHERE is_del = false ORDER BY create_time DESC
+    </select>
+
+    <select id="selectByName" resultMap="DeviceTypeResultMap">
+        SELECT * FROM device_type WHERE type_name = #{typeName} AND is_del = false
+    </select>
+
+    <insert id="insert">
+        INSERT INTO device_type (
+            uuid, type_name, type_desc, create_by, create_time, update_by, update_time, is_del, note
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{typeName}, #{typeDesc}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{isDel}, #{note}
+                 )
+    </insert>
+
+    <update id="update">
+        UPDATE device_type
+        <set>
+            <if test="typeName != null">type_name = #{typeName},</if>
+            <if test="typeDesc != null">type_desc = #{typeDesc},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE id = #{id} AND is_del = false
+    </update>
+
+    <update id="deleteById">
+        UPDATE device_type SET is_del = true, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <select id="selectByUuid" resultMap="DeviceTypeResultMap">
+        SELECT * FROM device_type WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <update id="deleteByUuid">
+        UPDATE device_type SET is_del = true, update_time = NOW() WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.equipment.mapper.UseRecordMapper">
+    <resultMap id="UseRecordResultMap" type="com.geo.dsp.module.equipment.entity.UseRecord">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="project_id" property="projectId"/>
+        <result column="engineering_id" property="engineeringId"/>
+        <result column="task_id" property="taskId"/>
+        <result column="user_id" property="userId"/>
+        <result column="use_start_time" property="useStartTime"/>
+        <result column="use_end_time" property="useEndTime"/>
+        <result column="note" property="note"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <select id="listByDeviceId" resultMap="UseRecordResultMap">
+        SELECT * FROM use_record WHERE device_id = #{deviceId} AND is_del = false ORDER BY use_start_time DESC
+    </select>
+
+    <select id="listByUserId" resultMap="UseRecordResultMap">
+        SELECT * FROM use_record WHERE user_id = #{userId} AND is_del = false ORDER BY use_start_time DESC
+    </select>
+
+    <insert id="insert">
+        INSERT INTO use_record (
+            uuid, device_id, project_id, engineering_id, task_id, user_id,
+            use_start_time, use_end_time, note, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{deviceId}, #{projectId}, #{engineeringId}, #{taskId}, #{userId},
+                     #{useStartTime}, #{useEndTime}, #{note}, #{isDel}
+                 )
+    </insert>
+
+    <update id="update">
+        UPDATE use_record
+        <set>
+            <if test="useEndTime != null">use_end_time = #{useEndTime},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE id = #{id} AND is_del = false
+    </update>
+
+    <update id="deleteById">
+        UPDATE use_record SET is_del = true WHERE id = #{id}
+    </update>
+
+    <select id="selectByUuid" resultMap="UseRecordResultMap">
+        SELECT * FROM use_record WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <update id="deleteByUuid">
+        UPDATE use_record SET is_del = true WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+
+    <select id="listByDeviceUuid" resultMap="UseRecordResultMap">
+        SELECT ur.* FROM use_record ur
+                             LEFT JOIN device d ON ur.device_id = d.id
+        WHERE d.uuid = CAST(#{deviceUuid} AS uuid) AND ur.is_del = false
+        ORDER BY ur.use_start_time DESC
+    </select>
+</mapper>

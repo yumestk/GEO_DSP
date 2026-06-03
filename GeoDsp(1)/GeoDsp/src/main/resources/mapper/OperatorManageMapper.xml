@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.privilege.mapper.OperatorManageMapper">
+
+    <resultMap id="OperatorManageVOMap" type="com.geo.dsp.module.privilege.vo.OperatorManageVO">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="company_id" property="companyId"/>
+        <result column="user_id" property="userId"/>
+        <result column="operator_name" property="operatorName"/>
+        <result column="phone_num" property="phoneNum"/>
+        <result column="status" property="status"/>
+        <result column="start_time" property="startTime"/>
+        <result column="stop_time" property="stopTime"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_del" property="isDel"/>
+        <result column="note" property="note"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.geo.dsp.module.privilege.entity.OperatorManage">
+        INSERT INTO operator_manage (
+            uuid, company_id, user_id, operator_name, phone_num, status,
+            start_time, stop_time, create_by, create_time, update_by, update_time, is_del, note
+        ) VALUES (
+            #{uuid}::uuid, #{companyId}, #{userId}, #{operatorName}, #{phoneNum}, #{status},
+            #{startTime}, #{stopTime}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{isDel}, #{note}
+        )
+    </insert>
+
+    <select id="selectByUuid" resultMap="OperatorManageVOMap">
+        SELECT * FROM operator_manage
+        WHERE uuid = #{uuid}::uuid AND is_del = false
+    </select>
+
+    <select id="selectPage" resultMap="OperatorManageVOMap">
+        SELECT * FROM operator_manage
+        WHERE is_del = false
+        <if test="operatorName != null and operatorName != ''">
+            AND operator_name LIKE CONCAT('%', #{operatorName}, '%')
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        <if test="startTime != null">
+            AND start_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null">
+            AND stop_time &lt;= #{endTime}
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="selectCount" resultType="long">
+        SELECT COUNT(*) FROM operator_manage
+        WHERE is_del = false
+        <if test="operatorName != null and operatorName != ''">
+            AND operator_name LIKE CONCAT('%', #{operatorName}, '%')
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        <if test="startTime != null">
+            AND start_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null">
+            AND stop_time &lt;= #{endTime}
+        </if>
+    </select>
+
+    <update id="updateByUuid" parameterType="com.geo.dsp.module.privilege.entity.OperatorManage">
+        UPDATE operator_manage
+        <set>
+            <if test="operatorName != null">operator_name = #{operatorName},</if>
+            <if test="phoneNum != null">phone_num = #{phoneNum},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="stopTime != null">stop_time = #{stopTime},</if>
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            update_time = NOW()
+        </set>
+        WHERE uuid = #{uuid}::uuid AND is_del = false
+    </update>
+
+    <update id="deleteByUuid">
+        UPDATE operator_manage
+        SET is_del = true, update_by = #{updateBy}, update_time = NOW()
+        WHERE uuid = #{uuid}::uuid AND is_del = false
+    </update>
+
+    <update id="updateStatus">
+        UPDATE operator_manage
+        SET status = #{status}, update_by = #{updateBy}, update_time = NOW()
+        WHERE uuid = #{uuid}::uuid AND is_del = false
+    </update>
+
+</mapper>

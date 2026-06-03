@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.privilege.mapper.PermissionMapper">
+    <resultMap id="PermissionResultMap" type="com.geo.dsp.module.privilege.entity.Permission">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="permission_name" property="permissionName"/>
+        <result column="permission_code" property="permissionCode"/>
+        <result column="permission_desc" property="permissionDesc"/>
+        <result column="permission_type" property="permissionType"/>
+        <result column="parent_permission" property="parentPermission"/>
+        <result column="component_path" property="componentPath"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <resultMap id="PermissionVOMap" type="com.geo.dsp.module.privilege.vo.PermissionVO">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="permission_name" property="permissionName"/>
+        <result column="permission_code" property="permissionCode"/>
+        <result column="permission_desc" property="permissionDesc"/>
+        <result column="permission_type" property="permissionType"/>
+        <result column="parent_permission" property="parentPermission"/>
+        <result column="component_path" property="componentPath"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 新增（UUID数据库自动生成） -->
+    <insert id="insertPermission" parameterType="Permission">
+        INSERT INTO permissions (
+            permission_name, permission_code, permission_desc,
+            permission_type, parent_permission, component_path,
+            status, create_by, create_time, update_by, update_time, is_del
+        ) VALUES (
+                     #{permissionName}, #{permissionCode}, #{permissionDesc},
+                     #{permissionType}, #{parentPermission}, #{componentPath},
+                     #{status}, #{createBy}, now(), #{updateBy}, now(), false
+                 )
+    </insert>
+
+    <!-- 分页列表（搜索：名称/编码） -->
+    <select id="selectPermissionPage" resultMap="PermissionVOMap">
+        SELECT id, uuid, permission_name, permission_code, permission_desc,
+        permission_type, parent_permission, component_path, status, create_time
+        FROM permissions
+        WHERE is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND (permission_name LIKE CONCAT('%', #{keyword}, '%')
+            OR permission_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <!-- 总数 -->
+    <select id="selectPermissionCount" resultType="long">
+        SELECT COUNT(*) FROM permissions
+        WHERE is_del = false
+        <if test="keyword != null and keyword != ''">
+            AND (permission_name LIKE CONCAT('%', #{keyword}, '%')
+            OR permission_code LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+    </select>
+
+    <!-- 修改 -->
+    <update id="updatePermission" parameterType="Permission">
+        UPDATE permissions
+        SET permission_name = #{permissionName},
+        permission_code = #{permissionCode},
+        permission_desc = #{permissionDesc},
+        permission_type = #{permissionType},
+        parent_permission = #{parentPermission},
+        component_path = #{componentPath},
+        status = #{status},
+        update_by = #{updateBy},
+        update_time = now()
+        WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </update>
+
+    <!-- 逻辑删除 -->
+    <update id="deleteByUuid">
+        UPDATE permissions
+        SET is_del = true, update_time = now()
+        WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </update>
+
+    <!-- 全量权限列表（不分页，供角色权限分配穿梭框用） -->
+    <select id="selectAllPermissions" resultMap="PermissionVOMap">
+        SELECT id, uuid, permission_name, permission_code, permission_desc,
+               permission_type, parent_permission, component_path, status, create_time
+        FROM permissions
+        WHERE is_del = false
+        ORDER BY create_time ASC
+    </select>
+
+    <!-- 根据用户UUID查询权限详情（包含componentPath，用于前端构建菜单和按钮控制） -->
+    <select id="selectUserPermissionsByUserUuid" resultType="com.geo.dsp.module.privilege.vo.UserPermissionVO">
+        SELECT p.uuid,
+               p.permission_code   AS permissionCode,
+               p.permission_name   AS permissionName,
+               p.permission_type   AS permissionType,
+               p.component_path    AS componentPath,
+               p.parent_uuid AS parentPermission
+        FROM permissions p
+        INNER JOIN role_permis rp ON rp.permission_uuid = p.uuid
+        INNER JOIN user_roles ur ON ur.role_code = (SELECT role_code FROM roles WHERE id = rp.role_id)
+        WHERE ur.user_uuid = CAST(#{userUuid} AS uuid)
+          AND p.is_del = false
+        ORDER BY p.create_time ASC
+    </select>
+
+    <!-- 根据角色ID查已分配的权限UUID列表 -->
+    <select id="selectPermissionUuidsByRoleId" resultType="string">
+        SELECT CAST(p.uuid AS varchar)
+        FROM permissions p
+        INNER JOIN role_permis rp ON rp.permission_uuid = p.uuid
+        WHERE rp.role_id = #{roleId}
+          AND p.is_del = false
+    </select>
+
+    <!-- 根据权限编码列表查询对应的UUID列表 -->
+    <select id="selectUuidsByCodes" resultType="string">
+        SELECT CAST(uuid AS varchar)
+        FROM permissions
+        WHERE permission_code IN
+        <foreach collection="codes" item="code" open="(" separator="," close=")">
+            #{code}
+        </foreach>
+        AND is_del = false
+    </select>
+
+</mapper>

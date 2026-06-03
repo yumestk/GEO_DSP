@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.data.mapper.DataPointMapper">
+    <resultMap id="DataPointResultMap" type="com.geo.dsp.module.data.entity.DataPoint">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="line_id" property="lineId"/>
+        <result column="point_no" property="pointNo"/>
+        <result column="x_coord" property="xCoord"/>
+        <result column="y_coord" property="yCoord"/>
+        <result column="z_coord" property="zCoord"/>
+        <result column="collect_time" property="collectTime"/>
+        <result column="collector_id" property="collectorId"/>
+        <result column="device_id" property="deviceId"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="note" property="note"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO data_point (
+            uuid, line_id, point_no, x_coord, y_coord, z_coord, collect_time,
+            collector_id, device_id, status, create_by, create_time, update_by, update_time, note, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{lineId}, #{pointNo}, #{xCoord}, #{yCoord}, #{zCoord}, #{collectTime},
+                     #{collectorId}, #{deviceId}, #{status}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{note}, #{isDel}
+                 )
+    </insert>
+
+    <select id="selectByUuid" resultMap="DataPointResultMap">
+        SELECT * FROM data_point WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <select id="listByDataLineUuid" resultMap="DataPointResultMap">
+        SELECT dp.* FROM data_point dp
+        LEFT JOIN data_line dl ON dp.line_id = dl.id
+        WHERE dl.uuid = CAST(#{dataLineUuid} AS uuid) AND dp.is_del = false
+        ORDER BY dp.point_no ASC
+    </select>
+
+    <update id="updateByUuid">
+        UPDATE data_point
+        <set>
+            <if test="pointNo != null">point_no = #{pointNo},</if>
+            <if test="xCoord != null">x_coord = #{xCoord},</if>
+            <if test="yCoord != null">y_coord = #{yCoord},</if>
+            <if test="zCoord != null">z_coord = #{zCoord},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </update>
+
+    <update id="batchDeleteByDataLineUuid">
+        UPDATE data_point SET is_del = true, update_by = #{updateBy}, update_time = NOW()
+        WHERE line_id IN (
+            SELECT id FROM data_line WHERE uuid = CAST(#{dataLineUuid} AS uuid) AND is_del = false
+        )
+    </update>
+
+    <update id="deleteByUuid">
+        UPDATE data_point SET is_del = true, update_by = #{updateBy}, update_time = NOW()
+        WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+</mapper>

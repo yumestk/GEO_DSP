@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dsp.module.equipment.mapper.DeviceMapper">
+    <resultMap id="DeviceResultMap" type="com.geo.dsp.module.equipment.entity.Device">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="company_id" property="companyId"/>
+        <result column="device_num" property="deviceNum"/>
+        <result column="device_type_id" property="deviceTypeId"/>
+        <result column="antenna_num" property="antennaNum"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="note" property="note"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="DeviceResultMap">
+        SELECT * FROM device WHERE id = #{id} AND is_del = false
+    </select>
+
+    <select id="listByCompanyId" resultMap="DeviceResultMap">
+        SELECT * FROM device WHERE company_id = #{companyId} AND is_del = false ORDER BY create_time DESC
+    </select>
+
+    <select id="listByStatus" resultMap="DeviceResultMap">
+        SELECT * FROM device WHERE status = #{status} AND is_del = false ORDER BY create_time DESC
+    </select>
+
+    <select id="selectByDeviceNum" resultMap="DeviceResultMap">
+        SELECT * FROM device WHERE device_num = #{deviceNum} AND is_del = false
+    </select>
+
+    <insert id="insert">
+        INSERT INTO device (
+            uuid, company_id, device_num, device_type_id, antenna_num, status,
+            create_by, create_time, update_by, update_time, note, is_del
+        ) VALUES (
+                     CAST(#{uuid} AS uuid), #{companyId}, #{deviceNum}, #{deviceTypeId}, #{antennaNum}, #{status},
+                     #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{note}, #{isDel}
+                 )
+    </insert>
+
+    <update id="update">
+        UPDATE device
+        <set>
+            <if test="companyId != null">company_id = #{companyId},</if>
+            <if test="deviceNum != null">device_num = #{deviceNum},</if>
+            <if test="deviceTypeId != null">device_type_id = #{deviceTypeId},</if>
+            <if test="antennaNum != null">antenna_num = #{antennaNum},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        WHERE id = #{id} AND is_del = false
+    </update>
+
+    <update id="updateStatus">
+        UPDATE device SET status = #{status}, update_time = NOW() WHERE id = #{id} AND is_del = false
+    </update>
+
+    <update id="deleteById">
+        UPDATE device SET is_del = true, update_time = NOW() WHERE id = #{id}
+    </update>
+
+    <select id="selectByUuid" resultMap="DeviceResultMap">
+        SELECT * FROM device WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </select>
+
+    <update id="updateStatusByUuid">
+        UPDATE device SET status = #{status}, update_time = NOW() WHERE uuid = CAST(#{uuid} AS uuid) AND is_del = false
+    </update>
+
+    <update id="deleteByUuid">
+        UPDATE device SET is_del = true, update_time = NOW() WHERE uuid = CAST(#{uuid} AS uuid)
+    </update>
+
+    <select id="listByCompanyUuid" resultMap="DeviceResultMap">
+        SELECT d.* FROM device d
+                            LEFT JOIN companies c ON d.company_id = c.id
+        WHERE c.uuid = CAST(#{companyUuid} AS uuid) AND d.is_del = false
+        ORDER BY d.create_time DESC
+    </select>
+
+    <select id="selectPage" resultMap="DeviceResultMap">
+        SELECT * FROM device
+        WHERE is_del = false
+        <if test="deviceNum != null and deviceNum != ''">
+            AND device_num LIKE CONCAT('%', #{deviceNum}, '%')
+        </if>
+        <if test="deviceTypeId != null">
+            AND device_type_id = #{deviceTypeId}
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+        ORDER BY create_time DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="selectCount" resultType="long">
+        SELECT COUNT(*) FROM device
+        WHERE is_del = false
+        <if test="deviceNum != null and deviceNum != ''">
+            AND device_num LIKE CONCAT('%', #{deviceNum}, '%')
+        </if>
+        <if test="deviceTypeId != null">
+            AND device_type_id = #{deviceTypeId}
+        </if>
+        <if test="status != null">
+            AND status = #{status}
+        </if>
+    </select>
+</mapper>
