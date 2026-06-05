@@ -1,0 +1,14 @@
+[31m2026-04-17 16:54:10.248[0;39m [33m[restartedMain][0;39m [1;31mERROR[0;39m [32mo.s.b.diagnostics.LoggingFailureAnalysisReporter[0;39m - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'securityFilterChain', defined in class path resource [com/geo/dsp/config/SecurityConfig.class], could not be registered. A bean with that name has already been defined in class path resource [com/geo/dsp/config/DisabledSecurityConfig.class] and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+

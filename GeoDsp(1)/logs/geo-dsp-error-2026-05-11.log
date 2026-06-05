@@ -1,0 +1,2 @@
+[31m2026-05-11 23:58:02.801[0;39m [33m[http-nio-9966-exec-1][0;39m [1;31mERROR[0;39m [32mcom.geo.dsp.common.util.JwtUtil[0;39m - Token 验证失败: Invalid compact JWT string: Compact JWSs must contain exactly 2 period characters, and compact JWEs must contain exactly 4.  Found: 0
+[31m2026-05-11 23:58:02.831[0;39m [33m[http-nio-9966-exec-1][0;39m [1;31mERROR[0;39m [32mcom.geo.dsp.common.util.JwtUtil[0;39m - Token 验证失败: Compact JWT strings may not contain whitespace.

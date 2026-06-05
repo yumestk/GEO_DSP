@@ -1,0 +1,4 @@
+[31m2026-03-20 16:42:55.231[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-03-20 16:42:55.258[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplicationTests[0;39m - Starting GeoDspApplicationTests using Java 17.0.12 with PID 8952 (started by User in E:\GeoDsp(1)\GeoDsp)
+[31m2026-03-20 16:42:55.263[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplicationTests[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-03-20 16:43:00.665[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplicationTests[0;39m - Started GeoDspApplicationTests in 5.72 seconds (process running for 6.63)

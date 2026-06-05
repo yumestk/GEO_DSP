@@ -1,0 +1,14 @@
+[31m2026-06-03 17:31:10.579[0;39m [33m[restartedMain][0;39m [1;31mERROR[0;39m [32mo.s.b.diagnostics.LoggingFailureAnalysisReporter[0;39m - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 9966 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 9966 or configure this application to listen on another port.
+

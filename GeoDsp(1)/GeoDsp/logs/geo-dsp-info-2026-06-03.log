@@ -1,0 +1,144 @@
+[31m2026-06-03 15:21:09.166[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 15:21:09.239[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 91540 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 15:21:09.242[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 15:21:11.475[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 15:21:11.497[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:21:11.500[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 15:21:11.501[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 15:21:11.559[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 15:21:11.560[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 2249 ms
+[31m2026-06-03 15:21:14.869[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:21:14.915[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat started on port 9966 (http) with context path '/geo'
+[31m2026-06-03 15:21:14.948[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Started GeoDspApplication in 6.424 seconds (process running for 7.002)
+[31m2026-06-03 15:21:16.019[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[31m2026-06-03 15:21:16.019[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+[31m2026-06-03 15:21:16.021[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Completed initialization in 1 ms
+[31m2026-06-03 15:21:22.111[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+[31m2026-06-03 15:21:22.489[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1583756d
+[31m2026-06-03 15:21:22.490[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+[31m2026-06-03 15:33:40.957[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 15:33:41.039[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 73620 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 15:33:41.042[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 15:33:43.288[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 15:33:43.317[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:33:43.321[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 15:33:43.322[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 15:33:43.396[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 15:33:43.397[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 2286 ms
+[31m2026-06-03 15:33:46.661[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:33:46.704[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat started on port 9966 (http) with context path '/geo'
+[31m2026-06-03 15:33:46.736[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Started GeoDspApplication in 6.386 seconds (process running for 7.011)
+[31m2026-06-03 15:33:49.782[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[31m2026-06-03 15:33:49.782[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+[31m2026-06-03 15:33:49.784[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Completed initialization in 1 ms
+[31m2026-06-03 15:33:54.307[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+[31m2026-06-03 15:33:54.581[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@d12e63d
+[31m2026-06-03 15:33:54.583[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+[31m2026-06-03 15:33:54.923[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test001 登录成功
+[31m2026-06-03 15:34:00.976[0;39m [33m[http-nio-9966-exec-4][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test001 登录成功
+[31m2026-06-03 15:34:01.099[0;39m [33m[http-nio-9966-exec-6][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test_observer 登录成功
+[31m2026-06-03 15:37:42.740[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 15:37:42.824[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 85052 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 15:37:42.827[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 15:37:45.087[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 15:37:45.117[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:37:45.123[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 15:37:45.123[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 15:37:45.214[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 15:37:45.214[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 2318 ms
+[31m2026-06-03 15:37:48.621[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:37:48.669[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat started on port 9966 (http) with context path '/geo'
+[31m2026-06-03 15:37:48.708[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Started GeoDspApplication in 6.648 seconds (process running for 7.312)
+[31m2026-06-03 15:37:49.420[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[31m2026-06-03 15:37:49.420[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+[31m2026-06-03 15:37:49.421[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Completed initialization in 1 ms
+[31m2026-06-03 15:37:56.752[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+[31m2026-06-03 15:37:57.018[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a691488
+[31m2026-06-03 15:37:57.020[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+[31m2026-06-03 15:50:21.606[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 15:50:21.679[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 47724 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 15:50:21.683[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 15:50:23.816[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 15:50:23.840[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:50:23.844[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 15:50:23.845[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 15:50:23.937[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 15:50:23.937[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 2180 ms
+[31m2026-06-03 15:50:26.624[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:51:10.571[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 15:51:10.677[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 53832 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 15:51:10.683[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 15:51:13.271[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 15:51:13.308[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:51:13.313[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 15:51:13.315[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 15:51:13.381[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 15:51:13.382[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 2630 ms
+[31m2026-06-03 15:51:18.197[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:51:18.251[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat started on port 9966 (http) with context path '/geo'
+[31m2026-06-03 15:51:18.313[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Started GeoDspApplication in 8.463 seconds (process running for 9.136)
+[31m2026-06-03 15:51:52.555[0;39m [33m[http-nio-9966-exec-7][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[31m2026-06-03 15:51:52.555[0;39m [33m[http-nio-9966-exec-7][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+[31m2026-06-03 15:51:52.557[0;39m [33m[http-nio-9966-exec-7][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Completed initialization in 1 ms
+[31m2026-06-03 15:53:38.012[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 15:53:38.109[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 87392 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 15:53:38.114[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 15:53:40.984[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 15:53:41.010[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:53:41.016[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 15:53:41.017[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 15:53:41.092[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 15:53:41.092[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 2891 ms
+[31m2026-06-03 15:53:46.570[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 15:53:46.593[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat started on port 9966 (http) with context path '/geo'
+[31m2026-06-03 15:53:46.622[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Started GeoDspApplication in 9.489 seconds (process running for 10.294)
+[31m2026-06-03 15:54:18.398[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[31m2026-06-03 15:54:18.400[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+[31m2026-06-03 15:54:18.400[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Completed initialization in 0 ms
+[31m2026-06-03 15:54:18.512[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+[31m2026-06-03 15:54:18.760[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@44876ad8
+[31m2026-06-03 15:54:18.761[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+[31m2026-06-03 16:05:50.600[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 16:05:50.707[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 60612 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 16:05:50.710[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 16:05:54.649[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 16:05:54.676[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 16:05:54.681[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 16:05:54.681[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 16:05:54.785[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 16:05:54.787[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 4006 ms
+[31m2026-06-03 16:05:59.019[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 16:05:59.092[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat started on port 9966 (http) with context path '/geo'
+[31m2026-06-03 16:05:59.159[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Started GeoDspApplication in 9.306 seconds (process running for 9.998)
+[31m2026-06-03 16:07:47.186[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[31m2026-06-03 16:07:47.186[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+[31m2026-06-03 16:07:47.188[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Completed initialization in 2 ms
+[31m2026-06-03 16:07:49.415[0;39m [33m[http-nio-9966-exec-4][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+[31m2026-06-03 16:07:49.784[0;39m [33m[http-nio-9966-exec-4][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6cab826f
+[31m2026-06-03 16:07:49.786[0;39m [33m[http-nio-9966-exec-4][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+[31m2026-06-03 16:29:44.802[0;39m [33m[background-preinit][0;39m [34mINFO [0;39m [32morg.hibernate.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.1.Final
+[31m2026-06-03 16:29:44.870[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Starting GeoDspApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 66232 (C:\Users\22317\Desktop\bbb\geodspp\dsp.jar started by 22317 in C:\Users\22317\Desktop\bbb\geodspp\GeoDsp(1)\GeoDsp)
+[31m2026-06-03 16:29:44.874[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - No active profile set, falling back to 1 default profile: "default"
+[31m2026-06-03 16:29:47.633[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 9966 (http)
+[31m2026-06-03 16:29:47.681[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 16:29:47.689[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+[31m2026-06-03 16:29:47.689[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.33]
+[31m2026-06-03 16:29:47.823[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring embedded WebApplicationContext
+[31m2026-06-03 16:29:47.825[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 2882 ms
+[31m2026-06-03 16:29:52.704[0;39m [33m[main][0;39m [34mINFO [0;39m [32morg.apache.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-9966"]
+[31m2026-06-03 16:29:52.727[0;39m [33m[main][0;39m [34mINFO [0;39m [32mo.s.boot.web.embedded.tomcat.TomcatWebServer[0;39m - Tomcat started on port 9966 (http) with context path '/geo'
+[31m2026-06-03 16:29:52.750[0;39m [33m[main][0;39m [34mINFO [0;39m [32mcom.geo.dsp.GeoDspApplication[0;39m - Started GeoDspApplication in 8.661 seconds (process running for 9.338)
+[31m2026-06-03 16:30:10.493[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mo.a.c.c.ContainerBase.[Tomcat].[localhost].[/geo][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[31m2026-06-03 16:30:10.493[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+[31m2026-06-03 16:30:10.495[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32morg.springframework.web.servlet.DispatcherServlet[0;39m - Completed initialization in 2 ms
+[31m2026-06-03 16:30:10.646[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Starting...
+[31m2026-06-03 16:30:10.840[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.pool.HikariPool[0;39m - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1a9db7a5
+[31m2026-06-03 16:30:10.841[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mcom.zaxxer.hikari.HikariDataSource[0;39m - HikariPool-1 - Start completed.
+[31m2026-06-03 16:32:58.103[0;39m [33m[http-nio-9966-exec-6][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户登出
+[31m2026-06-03 16:33:11.185[0;39m [33m[http-nio-9966-exec-7][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test_observer 登录成功
+[31m2026-06-03 16:35:07.833[0;39m [33m[http-nio-9966-exec-1][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test_observer 登录成功
+[31m2026-06-03 16:35:08.021[0;39m [33m[http-nio-9966-exec-2][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test_observer 登录成功
+[31m2026-06-03 16:36:03.133[0;39m [33m[http-nio-9966-exec-3][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test_observer 登录成功
+[31m2026-06-03 16:36:11.360[0;39m [33m[http-nio-9966-exec-7][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test_observer 登录成功
+[31m2026-06-03 16:38:50.809[0;39m [33m[http-nio-9966-exec-8][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户登出
+[31m2026-06-03 16:38:58.194[0;39m [33m[http-nio-9966-exec-9][0;39m [34mINFO [0;39m [32mc.g.dsp.module.login.service.impl.LoginServiceImpl[0;39m - 用户 test001 登录成功
